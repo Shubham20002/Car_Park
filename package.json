@@ -1,0 +1,14 @@
+{
+  "name": "node_authentication",
+  "version": "1.0.0",
+  "description": "node authentication project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shubham patil",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
