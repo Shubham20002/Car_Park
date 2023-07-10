@@ -3,7 +3,7 @@ const router=express.Router();
 //importing actions for home routes
 const homecontroller=require('../controllers/homecontroller');
 
-router.use('/',homecontroller.home);
-
+router.get('/',homecontroller.home);
+router.use('/user',require('./user'));
 
 module.exports=router;
