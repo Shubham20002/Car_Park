@@ -3,12 +3,13 @@ const port=8000;
 const app=express();
 const expressLayout=require('express-ejs-layouts');
 const db=require('./config/mongoose');
-
 //used for seeeion cookie
 const session= require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo');
+const flash=require('connect-flash');
+const customMware=require('./config/middleware');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('./assets'));
@@ -41,8 +42,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMware.setFlash);
 
 
 app.use('/',require('./routes'));

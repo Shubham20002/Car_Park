@@ -31,6 +31,7 @@ module.exports.createuser=async function(req,res){
         const user=await User.findOne({email:req.body.email});
         if(!user){
             const user= await User.create(req.body);
+            req.flash('success','user created successfully');
             return res.redirect('/user/signin')
             // return res.status(200).json({
             //    message:"user added successfully",
@@ -38,6 +39,7 @@ module.exports.createuser=async function(req,res){
             // })
         }
         else{
+            req.flash('error','user already present');
             return res.redirect('/user/signin')
             // return res.status(200).json({
             //     message:"user already added",
@@ -55,26 +57,32 @@ module.exports.createuser=async function(req,res){
 };
 
 module.exports.createsession=function(req,res){
+    req.flash('success','logged in successfully');
     return res.redirect('/')
 };
 
 module.exports.destroysession=function(req,res){
+    
     req.logout(function(err,) {
         if (err) { return next(err);
           }
-         
-        res.redirect('/');
+          
+       
       });
+      req.flash('success','loged out successfully');
+      return res.redirect('/');
 }
 
 module.exports.resetpassword= async function(req,res){
     console.log(req.body.password);
     console.log(req.params)
+    
     let user=await User.findById(req.params.id);
     
     user.name=req.body.name;
     user.email=req.body.email;
     user.password=req.body.password;
     user.save();
+    req.flash('success','password reset successfully');
     return res.redirect('/');
 }

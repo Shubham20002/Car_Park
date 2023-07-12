@@ -11,7 +11,10 @@ passport.use(new LocalStrategy({
         // find a user and establish the identity
       const user=await  User.findOne({ email: email });
       if(!user || password !=user.password){
+
+        req.flash('error','email or password does not match');
         return done(null,false)
+        
       }
             return done(null, user);
         } 
@@ -37,6 +40,7 @@ passport.checkauthentication=function(req,res,next){
     }
 
 //if the user is not signed in
+req.flash('error','you have logged out');
     return res.redirect('/user/signin');
 }
    
