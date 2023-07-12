@@ -6,8 +6,10 @@ const usercontroller=require('../controllers/usercontroller');
 
 router.get('/signup',usercontroller.signup);
 router.get('/signin',usercontroller.signin);
+router.get('/update',usercontroller.update);
 
 router.post('/create-user',usercontroller.createuser);
+router.post('/resetpassword/:id',usercontroller.resetpassword);
 
 router.post('/create-session',passport.authenticate(
     'local',{failureRedirect: '/user/signin'}

@@ -18,6 +18,13 @@ module.exports.signin=function(req,res){
     })
 };
 
+module.exports.update=function(req,res){
+   
+    return res.render('passwordreset',{
+
+    })
+};
+
 module.exports.createuser=async function(req,res){
     try{
 
@@ -58,4 +65,16 @@ module.exports.destroysession=function(req,res){
          
         res.redirect('/');
       });
+}
+
+module.exports.resetpassword= async function(req,res){
+    console.log(req.body.password);
+    console.log(req.params)
+    let user=await User.findById(req.params.id);
+    
+    user.name=req.body.name;
+    user.email=req.body.email;
+    user.password=req.body.password;
+    user.save();
+    return res.redirect('/');
 }
