@@ -24,16 +24,18 @@ module.exports.createuser=async function(req,res){
         const user=await User.findOne({email:req.body.email});
         if(!user){
             const user= await User.create(req.body);
-            return res.status(200).json({
-               message:"user added successfully",
-               data:user
-            })
+            return res.redirect('/user/signin')
+            // return res.status(200).json({
+            //    message:"user added successfully",
+            //    data:user
+            // })
         }
         else{
-            return res.status(200).json({
-                message:"user already added",
-                data:user
-             })
+            return res.redirect('/user/signin')
+            // return res.status(200).json({
+            //     message:"user already added",
+            //     data:user
+            //  })
         }
       
     }
@@ -48,3 +50,12 @@ module.exports.createuser=async function(req,res){
 module.exports.createsession=function(req,res){
     return res.redirect('/')
 };
+
+module.exports.destroysession=function(req,res){
+    req.logout(function(err,) {
+        if (err) { return next(err);
+          }
+         
+        res.redirect('/');
+      });
+}

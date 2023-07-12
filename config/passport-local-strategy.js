@@ -10,6 +10,9 @@ passport.use(new LocalStrategy({
     async function (req, email, password, done) {
         // find a user and establish the identity
       const user=await  User.findOne({ email: email });
+      if(!user || password !=user.password){
+        return done(null,false)
+      }
             return done(null, user);
         } 
 ));
@@ -37,6 +40,15 @@ passport.checkauthentication=function(req,res,next){
     return res.redirect('/user/signin');
 }
    
+
+passport.setAuthenticatedUser = function (req, res, next) {
+    if (req.isAuthenticated()) {
+        //req.user contain the current signed in user from session cookie and we are just sending this to the locals for the views
+        res.locals.user = req.user;
+    }
+    next();
+}
+
     
 
  module.exports=passport;

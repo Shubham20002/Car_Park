@@ -11,6 +11,7 @@ const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo');
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static('./assets'));
 
 
 
@@ -18,6 +19,10 @@ app.use(expressLayout);
 //setup for ejs view engine
 app.set('view engine','ejs');
 app.set('views','./views');
+
+ //extract the style and script from sub pages to layouts
+ app.set('layout extractStyles', true);
+ app.set('layout extractScript',true);
 
 
 //mongo store is used to store the session cookie in the db
@@ -35,6 +40,9 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(passport.setAuthenticatedUser);
 
 
 app.use('/',require('./routes'));
