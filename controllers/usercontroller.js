@@ -1,10 +1,23 @@
 const User=require('../models/user');
 
 module.exports.signup=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/');
+    }
     return res.render('user_signup',{
        title:'signup'
     })
-}
+};
+
+module.exports.signin=function(req,res){
+    if(req.isAuthenticated()){
+        return res.redirect('/');
+    }
+    return res.render('user_signin',{
+
+    })
+};
+
 module.exports.createuser=async function(req,res){
     try{
 
@@ -29,7 +42,9 @@ module.exports.createuser=async function(req,res){
         return res.status(500).json({
             message:"error while user adding"
         });
-    }
-    
-   
-}
+    }   
+};
+
+module.exports.createsession=function(req,res){
+    return res.redirect('/')
+};

@@ -4,6 +4,12 @@ const app=express();
 const expressLayout=require('express-ejs-layouts');
 const db=require('./config/mongoose');
 
+//used for seeeion cookie
+const session= require('express-session');
+const passport=require('passport');
+const passportLocal=require('./config/passport-local-strategy');
+const MongoStore=require('connect-mongo');
+
 app.use(express.urlencoded({ extended: false }));
 
 
@@ -12,6 +18,24 @@ app.use(expressLayout);
 //setup for ejs view engine
 app.set('view engine','ejs');
 app.set('views','./views');
+
+
+//mongo store is used to store the session cookie in the db
+app.use(session({
+    name:'codeial',
+    //todo change the secret before deployement in production mode
+    secret: 'blahsomething',
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:(1000*60*60)
+    },
+    store:MongoStore.create({ mongoUrl: 'mongodb://localhost/Node_Authentication' })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/',require('./routes'));
 //server starting on port no 8000
