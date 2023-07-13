@@ -11,6 +11,7 @@ const MongoStore=require('connect-mongo');
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
 const passportGoogle=require('./config/passport-google-oauth2-strategy');
+const atlas=`mongodb+srv://shubham992284:Sanju1967%40dp@cluster0.y4x6xrw.mongodb.net/node_authenticate`;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('./assets'));
@@ -37,7 +38,7 @@ app.use(session({
     cookie:{
         maxAge:(1000*60*60)
     },
-    store:MongoStore.create({ mongoUrl: 'mongodb://localhost/Node_Authentication' })
+    store:MongoStore.create({ mongoUrl: atlas })
 }));
 
 app.use(passport.initialize());
