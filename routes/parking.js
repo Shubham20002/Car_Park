@@ -7,7 +7,7 @@ const parkingcontroller=require('../controllers/parkingcontroller');
 
 
 router.post('/addparking',parkingcontroller.addparking);
-router.get('/parkform/:parkform',parkingcontroller.parkform);
+router.get('/parkform/:id',parkingcontroller.parkform);
 
 
 

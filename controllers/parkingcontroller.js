@@ -34,9 +34,13 @@ module.exports.addparking= async function(req,res){
 
 module.exports.parkform= async function(req,res){
 const id=req.params.id;
+console.log(id)
+
     const Park=await Parking.findOne({number:id});
+    console.log(Park);
     return res.render('addparking',{
         home:"this is home pahge",
-        parking:park
+        parking:Park
     })
+    return res.redirect('back')
 }

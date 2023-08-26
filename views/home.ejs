@@ -6,20 +6,60 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            .CarParking{
+                width: 60%;
+                margin: auto;
+                margin-top: 10px;
+                align-items: center;
+                text-align: center;
+            }
+            .booked{
+                background-color: red;
+                padding:20px ;
+                margin: 5px;
+            }
+            .unbooked{
+                background-color: blue;
+                padding:20px ;
+                margin: 5px;
+            }
+        </style>
     </head>
     <body>
-        <script>
-              function addform(){
-
-              }
-
-        </script>
-    
+        
+      <div class="CarParking">
+        <div>
+            <h1 >Car Parking Map</h1>
+        </div>
+        
         <ul>
+            
             <% for(park of parking){%>
-               <a href="/parking/parkform/<%=park.number%>"><button><%= park.number%></button></a> 
+                
+               <a href="/parking/parkform/<%=park.number%>"><button  class="<%=park.used%>"><%=park.number%></button></a> 
                 <%}%>
         </ul>
+
+      </div>
+        
+        <script>
+            const btn=document.getElementsByClassName("true");
+            console.log(btn)
+            for( i=0;i<btn.length;i++){
+                btn[i].classList.add("booked")
+               
+            }
+            
+
+
+            const btn2=document.getElementsByClassName("false");
+            for( i=0;i<btn2.length;i++){
+                btn2[i].classList.add("unbooked")
+            }
+
+      </script>
+        
         
     </body>
     </html>

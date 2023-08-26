@@ -6,16 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <%=park%>
+    <%=parking%>
     <form action="/parking/addparking" method="post">
         <div class="signup">
             <h1 style="text-align:center; margin-top: 10px;">Book Parking</h1>
-            <input type="text" required placeholder="Slot number" name="number" value="<%=park.number%>">
+            <input type="text" required placeholder="Slot number" name="number" value="<%=parking.number%>">
         
             <input type="text" name="user" id="user" placeholder=user">
             <select name="used" id="cars">
                 
-                <% if(park.used==="false"){%>
+                <% if(parking.used==="false"){%>
                 <option value="true"><button>Book</button></option>
                 <%}else{%>
                 <option value="false"><button>Unbook</button></option>
