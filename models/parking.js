@@ -7,11 +7,11 @@ const parkingSchema = new Schema({
         type:Number,
         required:true
       },
-    name:{
+    user:{
     type:String,
   },
   used:{
-    type:Boolean
+    type:String
   }
 },{
     timestamps:true

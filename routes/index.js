@@ -6,5 +6,6 @@ const homecontroller=require('../controllers/homecontroller');
 
 router.get('/',passport.checkauthentication,homecontroller.home);
 router.use('/user',require('./user'));
+router.use('/parking',require('./parking'));
 
 module.exports=router;

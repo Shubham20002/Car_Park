@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%=park%>
+    <form action="/parking/addparking" method="post">
+        <div class="signup">
+            <h1 style="text-align:center; margin-top: 10px;">Book Parking</h1>
+            <input type="text" required placeholder="Slot number" name="number" value="<%=park.number%>">
+        
+            <input type="text" name="user" id="user" placeholder=user">
+            <select name="used" id="cars">
+                
+                <% if(park.used==="false"){%>
+                <option value="true"><button>Book</button></option>
+                <%}else{%>
+                <option value="false"><button>Unbook</button></option>
+                <%}%>
+              </select>
+       
+            
+        <button>Book Parking</button>
+    </div>
+    </form>
+</body>
+</html>

@@ -8,7 +8,18 @@
         <title>Document</title>
     </head>
     <body>
-        <h1>home page</h1>
+        <script>
+              function addform(){
+
+              }
+
+        </script>
+    
+        <ul>
+            <% for(park of parking){%>
+               <a href="/parking/parkform/<%=park.number%>"><button><%= park.number%></button></a> 
+                <%}%>
+        </ul>
         
     </body>
     </html>
