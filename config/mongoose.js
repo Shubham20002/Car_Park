@@ -1,6 +1,6 @@
 // getting-started.js
 const mongoose = require('mongoose');
-const atlas=`mongodb+srv://shubham992284:Sanju1967%40dp@cluster0.y4x6xrw.mongodb.net/node_authenticate`;
+const atlas=`mongodb+srv://shubham992284:shubham@cluster0.y8knbib.mongodb.net/?retryWrites=true&w=majority`;
 main().catch(err => console.log(err));
 
 async function main() {
